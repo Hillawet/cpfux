@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Croco Plant · Asset Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8EDEA;--surface:#F7F9F7;--ink:#10282A;--mute:#5B6E6C;--line:#C9D3CF;--deep:#0F3A3A;--on-deep:#E8EDEA;--sun:#F0A236;--ok:#2F7D55;--blue:#2F6F9F;--bad:#C8432D;--warn:#8A5BB5;
+--d:'Bricolage Grotesque','Arial Narrow',Arial,sans-serif;--b:'DM Sans',system-ui,Arial,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0A1B1C;--surface:#112828;--ink:#E4ECE9;--mute:#8CA3A0;--line:#24403F;--deep:#16494A;--sun:#F5B04D;--ok:#4DB583;--blue:#5AA3D6;--bad:#E8664F;--warn:#B58BDD}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0A1B1C;--surface:#112828;--ink:#E4ECE9;--mute:#8CA3A0;--line:#24403F;--deep:#16494A;--sun:#F5B04D;--ok:#4DB583;--blue:#5AA3D6;--bad:#E8664F;--warn:#B58BDD}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--b)}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+nav{position:sticky;top:0;height:100vh;padding:28px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.logo{font:800 26px/1 var(--d);letter-spacing:-.03em;margin-bottom:28px}.logo small{display:block;font:500 12px var(--b);color:var(--mute);letter-spacing:0;margin-top:6px}
+nav button{background:none;border:0;text-align:left;padding:10px 12px;border-radius:999px;cursor:pointer;color:var(--mute);font-weight:500}
+nav button:hover{color:var(--ink)}nav button[aria-current=true]{background:var(--ink);color:var(--bg)}
+.who{margin-top:auto;font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
+.who select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px;width:100%;margin-top:6px}
+main{padding:40px clamp(20px,4vw,56px) 80px;min-width:0}
+h1{font:800 clamp(38px,6.4vw,84px)/.95 var(--d);letter-spacing:-.04em;margin:0 0 28px;max-width:15ch}
+h2{font:700 22px/1.1 var(--d);letter-spacing:-.02em;margin:0 0 14px}
+.sub{color:var(--mute);max-width:56ch;margin:-8px 0 32px}
+.hero{background:var(--deep);color:var(--on-deep);border-radius:28px;padding:clamp(22px,4vw,44px);margin-bottom:20px}
+.hero h1{margin-bottom:10px}.hero .sub{color:#A9C4BF;margin-bottom:28px}
+.bar{display:flex;height:18px;border-radius:99px;overflow:hidden;gap:3px}.bar i{display:block;min-width:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px}
+.legend div{display:flex;align-items:baseline;gap:8px}.legend b{font:800 40px/1 var(--d);letter-spacing:-.03em}.legend span{font-size:13px;color:#A9C4BF}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.panel{background:var(--surface);border-radius:24px;padding:24px}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}.row:first-of-type{border-top:0}
+.row small,.mute{color:var(--mute)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;border:1.5px solid currentColor;white-space:nowrap}
+.s-Available{color:var(--ok)}.s-Booked{color:var(--sun)}.s-Rented{color:var(--blue)}.s-Maintenance{color:var(--bad)}.s-Inspection{color:var(--warn)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.tools button,.btn{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:7px 16px;cursor:pointer}
+.tools button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.p{background:var(--sun);color:#10282A;border-color:var(--sun);font-weight:700}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:640px}
+th{text-align:left;font-weight:500;color:var(--mute);font-size:13px;padding:8px 12px}
+td{padding:14px 12px;border-top:1px solid var(--line)}tbody tr{cursor:pointer}tbody tr:hover{background:var(--surface)}
+td:first-child{font-weight:700}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--surface);padding:calc(28px + env(safe-area-inset-top,0px)) 28px 28px;box-shadow:-20px 0 60px rgba(0,0,0,.25);transform:translateX(105%);transition:transform .25s;overflow:auto;z-index:20}
+.drawer.on{transform:none}.drawer h2{font-size:34px;font-weight:800}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:8px;margin:18px 0}.kv dt{color:var(--mute)}.kv dd{margin:0}
+.tl{border-left:2px solid var(--line);margin:8px 0 0 5px;padding-left:18px}.tl p{margin:0 0 14px;position:relative}.tl p:before{content:"";position:absolute;left:-24px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--sun)}
+.cal{display:grid;grid-template-columns:150px repeat(7,minmax(60px,1fr));min-width:760px;gap:0}
+.cal>div{padding:12px 6px;border-top:1px solid var(--line);font-size:13px;position:relative;min-height:52px}
+.cal .h{color:var(--mute);border-top:0;padding-top:0}
+.ev{position:absolute;top:10px;bottom:10px;border-radius:10px;padding:5px 9px;font-size:12px;font-weight:700;color:#10282A;background:var(--sun);overflow:hidden;white-space:nowrap;z-index:1}
+.ev.pend{background:repeating-linear-gradient(45deg,var(--sun),var(--sun) 6px,transparent 6px,transparent 10px);outline:1.5px dashed var(--sun);color:var(--ink)}
+.form{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-top:22px}
+.form label{display:flex;flex-direction:column;font-size:13px;color:var(--mute);gap:4px}
+.form select{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.msg{margin-top:14px;padding:12px 16px;border-radius:14px;font-weight:500}.msg.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}.msg.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.map{background:var(--deep);border-radius:28px;overflow:hidden}.map svg{display:block;width:100%;height:auto}
+.pin{cursor:pointer}.pin:hover circle:first-child{r:16}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--surface);border-radius:22px;padding:22px}.card b{font:800 30px/1 var(--d);letter-spacing:-.02em;display:block;margin:10px 0 4px}
+.prog{height:8px;background:var(--line);border-radius:9px;margin-top:14px}.prog i{display:block;height:100%;border-radius:9px;background:var(--ok)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:99px;z-index:30}
+@media(max-width:820px){.app{display:block}
+nav{position:fixed;top:auto;bottom:0;left:0;right:0;height:auto;flex-direction:row;overflow-x:auto;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:var(--surface);border:0;border-top:1px solid var(--line);z-index:15}
+nav .logo,.who{display:none}nav button{white-space:nowrap}main{padding-bottom:100px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<nav id="nav"></nav>
+<main id="main"></main>
+</div>
+<aside class="drawer" id="dr" aria-label="Asset details"></aside>
+<script>
+const S={Available:'var(--ok)',Booked:'var(--sun)',Rented:'var(--blue)',Maintenance:'var(--bad)',Inspection:'var(--warn)'};
+const A=[
+['CP-VH-001','Toyota Hilux','Vehicle','Available','Caribbean Bay','Good','—',30,62],
+['CP-VH-002','Land Cruiser 79','Vehicle','Booked','Mana Pools','Good','Project: Game census',58,34],
+['CP-VH-003','Isuzu D-Max','Vehicle','Rented','Victoria Falls','Good','Zambezi Safaris Ltd',82,78],
+['CP-BT-001','Houseboat Kariba Queen','Boat','Available','Caribbean Bay','Good','—',26,66],
+['CP-BT-002','River skiff 25hp','Boat','Maintenance','Caribbean Bay','Fair','Workshop',34,58],
+['CP-PM-001','Generator 40kVA','Machinery','Booked','Mana Pools','Good','T. Moyo',61,40],
+['CP-PM-002','Excavator CAT 312','Machinery','Inspection','Caribbean Bay','Fair','Awaiting inspection',29,70],
+['CP-EL-001','Laptop Dell 5440','Electronics','Available','Caribbean Bay','Good','—',32,60],
+['CP-RM-001','Lodge room 4','Room','Rented','Victoria Falls','Good','Dube family',80,74],
+['CP-BL-001','Conference hall','Building','Available','Caribbean Bay','Good','—',27,64],
+['CP-VH-004','Toyota Fortuner','Vehicle','Rented','Victoria Falls','Good','Falls Adventures',84,80],
+['CP-BT-003','Sunset cruiser','Boat','Booked','Caribbean Bay','Good','R. Ncube',24,68]];
+const BK=[[1,1,2,'Game census',0],[5,0,1,'T. Moyo',0],[11,3,5,'R. Ncube',0],[0,4,6,'Site visit',0],[3,5,6,'Board retreat',0]];
+const CAL=['CP-VH-001','CP-VH-002','CP-BT-001','CP-BT-003','CP-PM-001'].map(id=>A.findIndex(a=>a[0]==id));
+const D=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const HIST=['Checked in · condition Good','Booked by T. Moyo, approved by Manager','Serviced · 15 000 km, oil and filters','Moved to Caribbean Bay','Added to register'];
+const V={Overview,Assets,Bookings,Map:MapV,Rentals,Maintenance};let cur='Overview',filt='All';
+const $=s=>document.querySelector(s);
+const chip=s=>`<span class="chip" style="color:${S[s]}"><i class="dot" style="background:${S[s]};margin:0"></i>${s}</span>`;
+function go(v){cur=v;$('#nav').innerHTML=`<div class="logo">Croco Plant<small>Assets, bookings, rentals</small></div>`+Object.keys(V).map(k=>`<button aria-current="${k==v}" onclick="go('${k}')">${k}</button>`).join('')+`<div class="who">Signed in as<select onchange="toast('Now viewing as '+this.value)"><option>Manager</option><option>Employee</option><option>Administrator</option><option>Rental officer</option></select></div>`;$('#main').innerHTML=V[v]();scrollTo(0,0);if(v=='Bookings')paint()}
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),2200)}
+function Overview(){const c={};A.forEach(a=>c[a[3]]=(c[a[3]]||0)+1);
+return `<section class="hero"><h1>Know where every asset is.</h1><p class="sub">${A.length} assets across Caribbean Bay, Mana Pools and Victoria Falls. Here is what is free, booked, rented or in the workshop right now.</p>
+<div class="bar">${Object.keys(S).map(k=>c[k]?`<i style="flex:${c[k]};background:${S[k]}"></i>`:'').join('')}</div>
+<div class="legend">${Object.keys(S).map(k=>`<div><b>${c[k]||0}</b><span><i class="dot" style="background:${S[k]}"></i>${k}</span></div>`).join('')}</div></section>
+<div class="grid"><div class="panel"><h2>Needs a decision</h2>
+<div class="row"><div>Land Cruiser 79 · Game census<br><small>Requested by A. Phiri · Tue–Wed</small></div><button class="btn p" onclick="toast('Booking approved');this.closest('.row').remove()">Approve</button></div>
+<div class="row"><div>Sunset cruiser · Board retreat<br><small>Requested by R. Ncube · Fri–Sat</small></div><button class="btn p" onclick="toast('Booking approved');this.closest('.row').remove()">Approve</button></div>
+<div class="row"><div>Excavator CAT 312<br><small>Returned yesterday, inspection due</small></div><button class="btn" onclick="go('Maintenance')">Inspect</button></div></div>
+<div class="panel"><h2>Most used this month</h2>${[['Toyota Hilux',92],['Houseboat Kariba Queen',78],['Conference hall',61],['Generator 40kVA',40]].map(u=>`<div style="margin-bottom:14px"><div class="row" style="border:0;padding:0"><span>${u[0]}</span><b>${u[1]}%</b></div><div class="prog" style="margin-top:6px"><i style="width:${u[1]}%"></i></div></div>`).join('')}</div></div>`}
+function Assets(){const cats=['All',...new Set(A.map(a=>a[2]))];const L=A.filter(a=>filt=='All'||a[2]==filt);
+return `<h1>Asset register</h1><div class="tools">${cats.map(c=>`<button aria-pressed="${c==filt}" onclick="filt='${c}';go('Assets')">${c}</button>`).join('')}<button class="btn p" style="margin-left:auto" onclick="toast('Add asset form opens here')">Add asset</button></div>
+<div class="panel tw"><table><thead><tr><th>ID</th><th>Asset</th><th>Category</th><th>Status</th><th>Location</th><th>Held by</th></tr></thead><tbody>${L.map(a=>`<tr tabindex="0" onclick="open_(${A.indexOf(a)})" onkeydown="if(event.key=='Enter')open_(${A.indexOf(a)})"><td>${a[0]}</td><td>${a[1]}</td><td>${a[2]}</td><td>${chip(a[3])}</td><td>${a[4]}</td><td class="mute">${a[6]}</td></tr>`).join('')}</tbody></table></div>`}
+function open_(i){const a=A[i];$('#dr').innerHTML=`<button class="btn" onclick="$('#dr').classList.remove('on')">Close</button><h2 style="margin-top:20px">${a[1]}</h2>${chip(a[3])}
+<dl class="kv"><dt>Asset ID</dt><dd>${a[0]}</dd><dt>Category</dt><dd>${a[2]}</dd><dt>Location</dt><dd>${a[4]}</dd><dt>Condition</dt><dd>${a[5]}</dd><dt>Assigned to</dt><dd>${a[6]}</dd></dl>
+<div style="display:flex;gap:8px;margin-bottom:24px"><button class="btn p" onclick="$('#dr').classList.remove('on');go('Bookings')">Book this</button><button class="btn" onclick="toast('Check-out recorded')">Check out</button></div><h2>History</h2><div class="tl">${HIST.map((h,k)=>`<p>${h}<br><small class="mute">${k*9+2} days ago</small></p>`).join('')}</div>`;$('#dr').classList.add('on')}
+function Bookings(){return `<h1>Book without clashes.</h1><p class="sub">Pick an asset and dates. Overlapping requests are blocked before they reach a manager.</p><div class="panel tw"><div class="cal" id="cal"></div></div>
+<div class="panel" style="margin-top:20px"><h2>New request</h2><div class="form"><label>Asset<select id="fa">${CAL.map(i=>`<option value="${i}">${A[i][1]}</option>`).join('')}</select></label><label>From<select id="ff">${D.map((d,i)=>`<option value="${i}">${d}</option>`).join('')}</select></label><label>To<select id="ft">${D.map((d,i)=>`<option value="${i}" ${i==2?'selected':''}>${d}</option>`).join('')}</select></label><button class="btn p" onclick="req()">Request booking</button></div><div id="res"></div></div>`}
+function paint(){const el=$('#cal');el.innerHTML=`<div class="h"></div>`+D.map(d=>`<div class="h">${d}</div>`).join('')+CAL.map(i=>`<div><b>${A[i][1]}</b></div>`+D.map((d,k)=>`<div>${k==0?BK.filter(b=>b[0]==i).map(b=>`<span class="ev ${b[4]?'pend':''}" style="left:${(b[1])*100}%;width:calc(${(b[2]-b[1]+1)*100}% - 8px);margin-left:4px">${b[3]}</span>`).join(''):''}</div>`).join('')).join('')}
+function req(){const a=+$('#fa').value,f=+$('#ff').value,t=+$('#ft').value,r=$('#res');
+if(t<f){r.innerHTML='<div class="msg bad">End day is before the start day. Choose a later end day.</div>';return}
+const c=BK.find(b=>b[0]==a&&f<=b[2]&&t>=b[1]);
+if(c){r.innerHTML=`<div class="msg bad">${A[a][1]} is already booked ${D[c[1]]}–${D[c[2]]} for “${c[3]}”. Pick other dates or another asset.</div>`;return}
+BK.push([a,f,t,'You · pending',1]);paint();r.innerHTML='<div class="msg ok">Request sent. A manager will approve it.</div>'}
+function MapV(){const pts=A.map((a,i)=>`<g class="pin" tabindex="0" onclick="open_(${i})" onkeydown="if(event.key=='Enter')open_(${i})"><circle cx="${a[7]*10}" cy="${a[8]*5}" r="12" fill="${S[a[3]]}" opacity=".35"/><circle cx="${a[7]*10}" cy="${a[8]*5}" r="6" fill="${S[a[3]]}"><title>${a[1]} · ${a[3]}</title></circle></g>`).join('');
+return `<h1>Where it is now.</h1><p class="sub">Mobile assets by last known location. Select a pin to open its record.</p><div class="map"><svg viewBox="0 0 1000 500" role="img" aria-label="Map of Croco Plant sites"><path d="M0 330 C180 300 260 380 420 340 S700 250 1000 300 L1000 500 L0 500Z" fill="#0B2E2E"/><path d="M100 330 C200 290 330 290 430 330" stroke="#2D6F6B" stroke-width="30" fill="none" opacity=".5"/><path d="M20 380 C250 330 560 400 980 290" stroke="#3E8A84" stroke-width="3" fill="none" stroke-dasharray="3 8"/>
+<g fill="#E8EDEA" font-family="DM Sans,Arial" font-size="15" font-weight="700"><text x="170" y="410">Caribbean Bay · Kariba</text><text x="480" y="130">Mana Pools</text><text x="720" y="450">Victoria Falls</text></g>${pts}</svg></div>
+<div class="tools" style="margin-top:16px">${Object.keys(S).map(k=>`<span><i class="dot" style="background:${S[k]}"></i>${k}</span>`).join('')}</div>`}
+function Rentals(){const R=[['Zambezi Safaris Ltd','Isuzu D-Max','12–19 Oct',1850,'Deposit paid'],['Falls Adventures','Toyota Fortuner','14–21 Oct',2100,'Paid in full'],['Dube family','Lodge room 4','15–18 Oct',690,'Balance due']];
+return `<h1>External rentals.</h1><div class="cards">${R.map(r=>`<div class="card"><small class="mute">${r[1]} · ${r[2]}</small><b>${r[0]}</b>$${r[3].toLocaleString()}<div class="prog"><i style="width:${r[4]=='Paid in full'?100:r[4]=='Deposit paid'?40:70}%;background:${r[4]=='Balance due'?'var(--sun)':'var(--ok)'}"></i></div><p class="mute" style="margin:8px 0 14px">${r[4]}</p><button class="btn" onclick="toast('Contract opens here')">View contract</button> <button class="btn p" onclick="toast('Return recorded')">Check in</button></div>`).join('')}<div class="card" style="display:grid;place-items:center;border:2px dashed var(--line);background:none"><button class="btn p" onclick="toast('New rental form opens here')">New rental</button></div></div>`}
+function Maintenance(){const M=[['River skiff 25hp','Engine repair','Overdue 3 days',90],['Excavator CAT 312','Post-return inspection','Due today',40],['Toyota Hilux','Service at 60 000 km','In 9 days',15],['Generator 40kVA','Oil and filter change','In 21 days',8]];
+return `<h1>Keep it running.</h1><div class="panel">${M.map(m=>`<div class="row"><div><b>${m[0]}</b><br><small>${m[1]}</small></div><div style="flex:1;max-width:220px"><div class="prog" style="margin:0"><i style="width:${m[3]}%;background:${m[3]>80?'var(--bad)':m[3]>30?'var(--sun)':'var(--ok)'}"></i></div></div><span class="mute">${m[2]}</span><button class="btn" onclick="toast('Service logged')">Log service</button></div>`).join('')}</div>`}
+go('Overview');
+</script>
+</body>
+</html>
